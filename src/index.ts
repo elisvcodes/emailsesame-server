@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import users from "./Routes/users.route";
+import contacts from "./Routes/contacts.route";
 
 dotenv.config();
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // Users route
 app.use("/api/v1/users", users);
 
-app.listen(3000, () => {
-  console.log("server runing");
-});
+// Contacts route
+app.use("/api/v1/contacts", contacts);
+
+app.listen(8000);

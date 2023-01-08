@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import prismaClient from "../../Utils/prisma";
 import hashPassword from "../../Utils/security/hashPassword";
+import generateToken from "../../Utils/security/generateToken";
 
 const createUser = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -13,7 +14,7 @@ const createUser = async (req: Request, res: Response) => {
       },
     });
 
-    res.json({ user });
+    res.json({ user, token: generateToken(user) });
   } catch (error) {
     res.json({
       message: "Sorry, there was an error",
